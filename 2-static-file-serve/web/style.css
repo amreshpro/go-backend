@@ -1,0 +1,14 @@
+*,
+:root {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background: #000613;
+    color: #e7e7ff;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 20px;
+
+}
