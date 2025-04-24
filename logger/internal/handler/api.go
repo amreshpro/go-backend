@@ -25,3 +25,7 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 	logger.Log.Infow("GET request received", "path", r.URL.Path)
 	w.Write([]byte("hello contact"))
 }
+
+func SyncLogger() {
+	_ = zapLogger.Sync()
+}
