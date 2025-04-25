@@ -12,6 +12,8 @@ func main() {
 
 // load logger
 logger.InitLogger("development")
+defer logger.SyncLogger()
+
 
 server := &http.Server{
 	Addr: ":8080",

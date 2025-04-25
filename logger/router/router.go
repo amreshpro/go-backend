@@ -15,6 +15,7 @@ func AppRouter() http.Handler{
 	mux.HandleFunc("/about",handler.About)
 	mux.HandleFunc("/contact",handler.Contact)
 	mux.HandleFunc("/health",handler.HealthCheck)
+	
 
 
 	return mux

@@ -20,3 +20,7 @@ func InitLogger(env string){
 	Log = zapLogger.Sugar()
 
 }
+
+func SyncLogger(){
+	_ = Log.Sync()
+}

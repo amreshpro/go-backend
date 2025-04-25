@@ -26,6 +26,4 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("hello contact"))
 }
 
-func SyncLogger() {
-	_ = zapLogger.Sync()
-}
+
