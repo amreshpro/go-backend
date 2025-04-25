@@ -1,9 +1,0 @@
-# .air.toml
-
-root = "."
-
-cmd = "go run ./cmd/server/main.go"
-
-
-[log]
-time = true

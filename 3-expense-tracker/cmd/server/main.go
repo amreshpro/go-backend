@@ -2,24 +2,27 @@ package main
 
 import (
 	"net/http"
-	"github.com/amreshpro/go-backend/3-expense-tracker/internal/router"
+	"github.com/amreshpro/go-backend/3-expense-tracker/pkg/config"
 	"github.com/amreshpro/go-backend/3-expense-tracker/pkg/logger"
+	"github.com/amreshpro/go-backend/3-expense-tracker/internal/router"
 )
 
 func main() {
-	
-logger.InitLogger("development")
+	config.LoadEnv()
+	logger.InitLogger("development")
+	defer logger.SyncLogger() // ✅ flush logs safely
 
-server := &http.Server{
-	Addr: ":8080",
-	Handler: router.AppRouter(),
+	port := config.GetEnvPort("PORT", "3000")
+	logger.Log.Infow("Starting server...", "port", port)
+	jwtKeySec := config.GetEnv("JWT_SECRET_KEY", "")
+	logger.Log.Infow("JWT SECRET KEY...", "JWTKEY: ", jwtKeySec)
+
+	server := &http.Server{
+		Addr:    port,
+		Handler: router.AppRouter(),
 	}
 
-
-	logger.Log.Infow("Server is started")
-	if err:= server.ListenAndServe(); err!=nil{
-		logger.Log.Panicw("Failed to start error: ",err)
+	if err := server.ListenAndServe(); err != nil {
+		logger.Log.Panicw("Server failed to start", "error", err)
 	}
-
-
 }
